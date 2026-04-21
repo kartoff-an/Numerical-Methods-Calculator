@@ -154,4 +154,4 @@ java -jar target/[NAME_OF_THE_APPLICATION]-1.0-SNAPSHOT.jar
 - JavaFX community for UI framework support
 
 
-**Note:** This calculator is built as a requirement for the course **CPE 221: Numerical Methods".
+**Note:** This calculator is built as a requirement for the course **CPE 221: Numerical Methods**.
