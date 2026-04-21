@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import com.roquero.numericalmethods.components.CustomTableView?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.roquero.numericalmethods.controllers.SimpsonController"
+      styleClass="workspace-container"
+      spacing="18"
+      maxWidth="1100"
+      alignment="TOP_CENTER">
+
+    <!-- Header -->
+    <VBox spacing="4" alignment="CENTER_LEFT">
+        <Label text="Simpson's 1/3 Rule" styleClass="workspace-title"/>
+        <Label text="Numerical integration using quadratic approximation"
+               styleClass="workspace-subtitle"/>
+    </VBox>
+
+    <!-- Input Card -->
+    <VBox styleClass="card" spacing="16">
+        <Label text="Integration Configuration" styleClass="section-title"/>
+
+        <GridPane hgap="14" vgap="12" styleClass="gridpane">
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" prefWidth="140"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+
+            <Label text="f(x) =" styleClass="input-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="functionField"
+                       promptText="e.g., sin(x), x^2, e^x"
+                       text="x^2"
+                       styleClass="input-field"
+                       GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="Lower bound (a):" styleClass="input-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="lowerBoundField"
+                       promptText="0"
+                       text="0"
+                       styleClass="input-field"
+                       GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <Label text="Upper bound (b):" styleClass="input-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextField fx:id="upperBoundField"
+                       promptText="1"
+                       text="1"
+                       styleClass="input-field"
+                       GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+            <Label text="Segments (n):" styleClass="input-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <HBox spacing="10" alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                <TextField fx:id="segmentsField"
+                           promptText="4"
+                           text="4"
+                           prefWidth="120"
+                           styleClass="input-field"/>
+                <Label text="(must be even)" style="-fx-text-fill: #64748b; -fx-font-size: 11px;"/>
+            </HBox>
+        </GridPane>
+
+        <HBox spacing="12" alignment="CENTER">
+            <Button fx:id="solveButton" text="INTEGRATE" styleClass="solve-button" maxWidth="200"/>
+            <Button fx:id="clearButton" text="Clear" styleClass="clear-button" maxWidth="120"/>
+        </HBox>
+    </VBox>
+
+    <!-- Final Results Card -->
+    <VBox fx:id="resultCard" styleClass="card" spacing="14" visible="false" managed="false">
+        <Label text="Integration Result" styleClass="section-title"/>
+
+        <GridPane hgap="14" vgap="12">
+            <Label text="Integral Value:" styleClass="input-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <Label fx:id="integralValue" styleClass="result-value"
+                   GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="Segments Used:" styleClass="input-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <Label fx:id="segmentsUsed" styleClass="result-meta"
+                   GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <Label text="Step Size (h):" styleClass="input-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <Label fx:id="stepSizeValue" styleClass="result-meta"
+                   GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+            <Label text="Status:" styleClass="input-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <Label fx:id="convergedStatus" styleClass="result-meta"
+                   GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+        </GridPane>
+    </VBox>
+
+    <!-- Detailed Solution Card -->
+    <VBox fx:id="detailedSolutionCard" styleClass="card" spacing="20" visible="false" managed="false">
+        <Label text="Detailed Solution Steps" styleClass="section-title"/>
+
+        <!-- Formula Section -->
+        <VBox fx:id="formulaContainer" spacing="8"/>
+
+        <Separator/>
+
+        <!-- Calculation Summary Section -->
+        <VBox fx:id="calculationContainer" spacing="8"/>
+    </VBox>
+
+    <!-- Calculation Table Card -->
+    <VBox fx:id="tableCard" styleClass="card" spacing="12" visible="false" managed="false">
+        <Label text="Point-by-Point Calculation" styleClass="section-title"/>
+        <Label text="Coefficients: 1 = endpoints, 2 = even indices, 4 = odd indices"
+               style="-fx-font-size: 11px; -fx-text-fill: #64748b; -fx-padding: 0 0 5 0;"/>
+        <CustomTableView fx:id="calculationTable" styleClass="custom-table-view"
+                         style="-fx-min-height: 300px;"/>
+    </VBox>
+</VBox>

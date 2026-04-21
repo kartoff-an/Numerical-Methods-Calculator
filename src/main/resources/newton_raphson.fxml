@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import com.roquero.numericalmethods.components.CustomTableView?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.roquero.numericalmethods.controllers.NewtonRaphsonController"
+      styleClass="workspace-container"
+      spacing="18"
+      maxWidth="900"
+      alignment="TOP_CENTER">
+
+    <!-- Header -->
+    <VBox spacing="4" alignment="CENTER_LEFT">
+        <Label text="Newton–Raphson Method" styleClass="workspace-title"/>
+        <Label text="Find roots of equations using iterative approximation"
+               styleClass="workspace-subtitle"/>
+    </VBox>
+
+    <!-- Input Card -->
+    <VBox styleClass="card" spacing="16">
+        <Label text="Function Configuration" styleClass="section-title"/>
+
+        <GridPane hgap="14" vgap="12" styleClass="gridpane">
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" prefWidth="100"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+
+            <Label text="f(x) =" styleClass="input-label" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="functionField"
+                       promptText="e.g., x^3 - 2*x - 5"
+                       text="x^3 - 2*x - 5"
+                       styleClass="input-field"
+                       GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <Label text="Initial x₀ =" styleClass="input-label" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextField fx:id="initialField"
+                       promptText="Starting value"
+                       text="2.0"
+                       styleClass="input-field"
+                       GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+        </GridPane>
+
+        <HBox spacing="12" alignment="CENTER">
+            <Button fx:id="solveButton" text="SOLVE EQUATION" styleClass="solve-button" maxWidth="200"/>
+            <Button fx:id="clearButton" text="Clear" styleClass="clear-button" maxWidth="200"/>
+        </HBox>
+    </VBox>
+
+    <!-- Tolerance & Max Iterations Card -->
+    <VBox styleClass="card" spacing="16">
+        <Label text="Convergence Settings" styleClass="section-title"/>
+
+        <GridPane hgap="14" vgap="12" styleClass="gridpane">
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" prefWidth="120"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+
+            <Label text="Tolerance (ε):" styleClass="input-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="toleranceField"
+                       promptText="1e-6"
+                       text="1e-6"
+                       prefWidth="150"
+                       styleClass="input-field"
+                       GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="Max Iterations:" styleClass="input-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="maxIterationsField"
+                       promptText="100"
+                       text="100"
+                       prefWidth="150"
+                       styleClass="input-field"
+                       GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <Label text="ⓘ Lower tolerance = higher accuracy, more iterations"
+                   style="-fx-font-size: 10px; -fx-text-fill: #64748b; -fx-padding: 4 0 0 0;"
+                   GridPane.columnIndex="0" GridPane.rowIndex="2"
+                   GridPane.columnSpan="2"/>
+        </GridPane>
+    </VBox>
+
+    <!-- Result Card -->
+    <VBox fx:id="resultCard" styleClass="card" spacing="14" visible="false" managed="false">
+        <Label text="Solution" styleClass="section-title"/>
+
+        <GridPane hgap="14" vgap="16">
+            <Label text="Root:" styleClass="input-label" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <Label fx:id="rootValue" styleClass="result-value" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="Converged:" styleClass="input-label" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <Label fx:id="convergedStatus" styleClass="result-meta" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <Label text="Convergence Test:" styleClass="input-label" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <Label fx:id="convergenceTest" styleClass="result-meta" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+            <Label text="Iterations:" styleClass="input-label" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <Label fx:id="iterationsCount" styleClass="result-meta" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+            <Label text="Final Error:" styleClass="input-label" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+            <Label fx:id="finalError" styleClass="result-meta" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+        </GridPane>
+    </VBox>
+
+    <!-- Iterations Table Card  -->
+    <VBox fx:id="tableCard" styleClass="card" spacing="12" visible="false" managed="false" style="-fx-min-height: 300px;">
+        <!-- Formula Card -->
+        <Label text="Newton-Raphson Formula" styleClass="section-title"/>
+
+        <VBox spacing="10">
+            <!-- General Formula -->
+            <VBox spacing="8" style="-fx-background-color: #f8fafc; -fx-border-color: #e2e8f0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 14;">
+                <HBox spacing="8" alignment="CENTER_LEFT">
+                    <Label text="ƒ" style="-fx-text-fill: #0284c7; -fx-font-size: 16px; -fx-font-weight: bold;"/>
+                    <Label text="Iteration Formula" style="-fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #0284c7;"/>
+                </HBox>
+                <Label text="xₙ₊₁ = xₙ - f(xₙ) / f'(xₙ)"
+                       style="-fx-font-family: 'Courier New', monospace; -fx-font-size: 14px; -fx-text-fill: #475569; -fx-padding: 0 0 0 24;"/>
+            </VBox>
+        </VBox>
+
+        <Label text="Iteration Details" styleClass="section-title"/>
+        <CustomTableView fx:id="iterationsTable" styleClass="custom-table-view"/>
+    </VBox>
+</VBox>

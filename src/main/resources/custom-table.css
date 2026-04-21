@@ -1,0 +1,7 @@
+.row-container {
+    -fx-background-color: white;
+}
+
+.row-container:hover {
+    -fx-background-color: #f8f9fa;
+}

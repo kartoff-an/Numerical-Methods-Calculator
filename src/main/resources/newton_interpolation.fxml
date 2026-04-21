@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import com.roquero.numericalmethods.components.CustomTableView?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.roquero.numericalmethods.controllers.NewtonInterpolationController"
+      styleClass="workspace-container"
+      spacing="18"
+      maxWidth="1200"
+      alignment="TOP_CENTER">
+
+    <!-- Header -->
+    <VBox spacing="4" alignment="CENTER_LEFT">
+        <Label text="Newton's Interpolation (Divided Differences)" styleClass="workspace-title"/>
+        <Label text="Construct polynomial through given points using Newton's divided difference method"
+               styleClass="workspace-subtitle"/>
+    </VBox>
+
+    <!-- Input Points Card -->
+    <VBox styleClass="card" spacing="16">
+        <Label text="Data Points" styleClass="section-title"/>
+
+        <GridPane hgap="14" vgap="12" styleClass="gridpane">
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" prefWidth="100"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+
+            <Label text="X values:" styleClass="input-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="xPointsField"
+                       promptText="e.g., 0, 1, 2, 3"
+                       text="0, 1, 2, 3"
+                       styleClass="input-field"
+                       GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="Y values:" styleClass="input-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="yPointsField"
+                       promptText="e.g., 1, 2, 4, 8"
+                       text="1, 2, 4, 8"
+                       styleClass="input-field"
+                       GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        </GridPane>
+
+        <HBox spacing="12" alignment="CENTER">
+            <Button fx:id="loadPointsButton" text="LOAD POINTS" styleClass="solve-button" maxWidth="200"/>
+            <Button fx:id="clearButton" text="Clear All" styleClass="clear-button" maxWidth="200"/>
+        </HBox>
+
+        <Label text="💡 Tip: Separate values by commas or spaces. At least 2 points required."
+               style="-fx-font-size: 11px; -fx-text-fill: #64748b; -fx-padding: 4 0 0 0;"/>
+    </VBox>
+
+    <!-- Polynomial Results Card -->
+    <VBox fx:id="pointsCard" styleClass="card" spacing="12" visible="false" managed="false">
+        <Label text="Newton Polynomial (Newton Form)" styleClass="section-title"/>
+        <Label fx:id="nonSimplifiedPolynomialLabel"
+               style="-fx-font-family: 'Courier New', monospace; -fx-font-size: 12px; -fx-wrap-text: true; -fx-background-color: #f8fafc; -fx-padding: 10; -fx-background-radius: 6;"/>
+
+        <Separator/>
+
+        <Label text="Simplified Polynomial (Standard Form)" styleClass="section-title"/>
+        <Label fx:id="simplifiedPolynomialLabel"
+               style="-fx-font-family: 'Courier New', monospace; -fx-font-weight: bold; -fx-font-size: 13px; -fx-wrap-text: true; -fx-background-color: #eef2ff; -fx-padding: 10; -fx-background-radius: 6; -fx-text-fill: #4f46e5;"/>
+    </VBox>
+
+    <!-- Divided Differences Table Card -->
+    <VBox fx:id="tableCard" styleClass="card" spacing="12" visible="false" managed="false"
+          style="-fx-min-height: 320px;">
+        <Label text="Divided Differences Table" styleClass="section-title"/>
+        <CustomTableView fx:id="dividedDiffTable" styleClass="custom-table-view"/>
+    </VBox>
+
+    <!-- Interpolation Card -->
+    <VBox fx:id="interpolationCard" styleClass="card" spacing="16" visible="false" managed="false">
+        <Label text="Interpolation" styleClass="section-title"/>
+
+        <GridPane hgap="14" vgap="12" styleClass="gridpane">
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" prefWidth="100"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+
+            <Label text="X value(s):" styleClass="input-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <HBox spacing="10" alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <TextField fx:id="interpolateXField"
+                           promptText="e.g., 1.5 or 2.5, 3.5, 4.5"
+                           prefWidth="250"
+                           styleClass="input-field"/>
+                <Button fx:id="interpolateButton" text="INTERPOLATE" styleClass="solve-button"/>
+            </HBox>
+        </GridPane>
+
+        <Label text="Interpolation Results:" styleClass="input-label"/>
+        <Label fx:id="interpolationResult"
+               style="-fx-font-family: 'Courier New', monospace; -fx-font-size: 12px; -fx-padding: 10; -fx-background-color: #f8fafc; -fx-background-radius: 6; -fx-wrap-text: true;"/>
+
+        <!-- Interpolation Results Table -->
+        <VBox spacing="8">
+            <Label text="Interpolation Table" styleClass="section-title"/>
+            <CustomTableView fx:id="interpolationTable" styleClass="custom-table-view"
+                             style="-fx-min-height: 200px;"/>
+        </VBox>
+    </VBox>
+</VBox>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import com.roquero.numericalmethods.components.CustomTableView?>
+
+<?import java.lang.String?>
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.roquero.numericalmethods.controllers.GaussJacobiController"
+      styleClass="workspace-container"
+      spacing="18"
+      maxWidth="1200"
+      alignment="TOP_CENTER">
+
+    <!-- Header -->
+    <VBox spacing="4" alignment="CENTER_LEFT">
+        <Label text="Gauss–Jacobi Method" styleClass="workspace-title"/>
+        <Label text="Solve systems of linear equations using iterative approximation"
+               styleClass="workspace-subtitle"/>
+    </VBox>
+
+    <!-- Matrix Size Input Card -->
+    <VBox styleClass="card" spacing="16">
+        <Label text="System Configuration" styleClass="section-title"/>
+
+        <GridPane hgap="14" vgap="12" styleClass="gridpane">
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" prefWidth="120"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+
+            <Label text="Matrix Size (n×n):" styleClass="input-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <HBox spacing="12" alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <TextField fx:id="matrixSizeField"
+                           promptText="2-5"
+                           text="3"
+                           prefWidth="100"
+                           styleClass="input-field"/>
+                <Button fx:id="generateMatrixButton"
+                        text="Generate Matrix"
+                        styleClass="solve-button"
+                        style="-fx-background-color: #4f46e5; -fx-padding: 8 24; -fx-font-size: 13px;"/>
+            </HBox>
+        </GridPane>
+    </VBox>
+
+    <!-- Matrix Input Card - Modern Design -->
+    <VBox fx:id="matrixInputPanel" styleClass="card" spacing="16" visible="false" managed="false">
+        <Label text="System Definition" styleClass="section-title"/>
+
+        <!-- Matrix visualization hint -->
+        <HBox spacing="8" alignment="CENTER_LEFT">
+            <Label text="A · x = b"
+                   style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #4f46e5; -fx-padding: 4 12; -fx-background-color: #eef2ff; -fx-background-radius: 20;"/>
+            <Label text="Initial guess: x₀"
+                   style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #059669; -fx-padding: 4 12; -fx-background-color: #ecfdf5; -fx-background-radius: 20;"/>
+        </HBox>
+
+        <Separator style="-fx-padding: 4 0 0 0;">
+            <styleClass>
+                <String fx:value="separator"/>
+            </styleClass>
+        </Separator>
+
+        <ScrollPane fitToWidth="true" vbarPolicy="NEVER"
+                    style="-fx-background-color: transparent; -fx-background: transparent;">
+            <VBox spacing="12">
+                <GridPane fx:id="matrixGrid" hgap="10" vgap="10"
+                          alignment="CENTER"
+                          style="-fx-padding: 16; -fx-background-color: #f8fafc; -fx-background-radius: 12; -fx-border-color: #e2e8f0; -fx-border-radius: 12; -fx-border-width: 1;"
+                />
+            </VBox>
+        </ScrollPane>
+
+        <!-- Info note -->
+        <Label text="💡 Tip: The system will be automatically reordered for diagonal dominance to ensure convergence"
+               style="-fx-font-size: 11px; -fx-text-fill: #64748b; -fx-padding: 8 12 0 12; -fx-background-color: #f1f5f9; -fx-background-radius: 8;"/>
+    </VBox>
+
+    <!-- Tolerance & Max Iterations Card -->
+    <VBox styleClass="card" spacing="16">
+        <Label text="Convergence Settings" styleClass="section-title"/>
+
+        <GridPane hgap="14" vgap="12" styleClass="gridpane">
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" prefWidth="120"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+
+            <Label text="Tolerance (ε):" styleClass="input-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="toleranceField"
+                       promptText="1e-6"
+                       text="1e-6"
+                       prefWidth="150"
+                       styleClass="input-field"
+                       GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="Max Iterations:" styleClass="input-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="maxIterationsField"
+                       promptText="100"
+                       text="100"
+                       prefWidth="150"
+                       styleClass="input-field"
+                       GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <Label text="ⓘ Lower tolerance = higher accuracy, more iterations"
+                   style="-fx-font-size: 10px; -fx-text-fill: #64748b; -fx-padding: 4 0 0 0;"
+                   GridPane.columnIndex="0" GridPane.rowIndex="2"
+                   GridPane.columnSpan="2"/>
+        </GridPane>
+    </VBox>
+
+    <!-- Action Buttons -->
+    <HBox spacing="12" alignment="CENTER" visible="${matrixInputPanel.visible}" managed="${matrixInputPanel.visible}">
+        <Button fx:id="solveButton" text="SOLVE SYSTEM" styleClass="solve-button" maxWidth="200"/>
+        <Button fx:id="clearButton" text="Clear All" styleClass="clear-button" maxWidth="200"/>
+    </HBox>
+
+    <!-- Result Card -->
+    <VBox fx:id="resultCard" styleClass="card" spacing="14" visible="false" managed="false">
+        <Label text="Solution" styleClass="section-title"/>
+
+        <GridPane hgap="14" vgap="16">
+            <Label text="Solution Vector:" styleClass="input-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <Label fx:id="solutionStatus" styleClass="result-meta"
+                   GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="Converged:" styleClass="input-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <Label fx:id="convergedStatus" styleClass="result-meta"
+                   GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <Label text="Iterations:" styleClass="input-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <Label fx:id="iterationsCount" styleClass="result-meta"
+                   GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+            <Label text="Final Error:" styleClass="input-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <Label fx:id="finalError" styleClass="result-meta"
+                   GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+        </GridPane>
+    </VBox>
+
+    <!-- Iterations Table Card -->
+    <VBox fx:id="tableCard" styleClass="card" spacing="12" visible="false" managed="false"
+          style="-fx-min-height: 320px;">
+        <Label text="Iteration Details" styleClass="section-title"/>
+        <CustomTableView fx:id="iterationsTable" styleClass="custom-table-view"/>
+    </VBox>
+</VBox>

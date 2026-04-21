@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import com.roquero.numericalmethods.components.CustomTableView?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.roquero.numericalmethods.controllers.CentralDividedDifferenceController"
+      styleClass="workspace-container"
+      spacing="18"
+      maxWidth="1200"
+      alignment="TOP_CENTER">
+
+    <!-- Header -->
+    <VBox spacing="4" alignment="CENTER_LEFT">
+        <Label text="Central Divided Difference" styleClass="workspace-title"/>
+        <Label text="Numerical differentiation using central difference formulas"
+               styleClass="workspace-subtitle"/>
+    </VBox>
+
+    <!-- Input Card -->
+    <VBox styleClass="card" spacing="16">
+        <Label text="Function Configuration" styleClass="section-title"/>
+
+        <GridPane hgap="14" vgap="12" styleClass="gridpane">
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" prefWidth="100"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+
+            <Label text="f(x) =" styleClass="input-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="functionField"
+                       promptText="e.g., sin(x), x^2, e^x"
+                       text="x^3"
+                       styleClass="input-field"
+                       GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="Point x₀ =" styleClass="input-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="xPointField"
+                       promptText="2"
+                       text="2"
+                       styleClass="input-field"
+                       GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <Label text="Step size h =" styleClass="input-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <HBox spacing="10" alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <TextField fx:id="stepSizeField"
+                           promptText="0.001"
+                           text="0.001"
+                           prefWidth="120"
+                           styleClass="input-field"/>
+            </HBox>
+        </GridPane>
+
+        <HBox spacing="12" alignment="CENTER">
+            <Button fx:id="calculateButton" text="CALCULATE DERIVATIVES" styleClass="solve-button" maxWidth="250"/>
+            <Button fx:id="richardsonButton" text="Richardson Extrapolation" styleClass="solve-button"
+                    style="-fx-background-color: #10b981;" maxWidth="200"/>
+            <Button fx:id="clearButton" text="Clear" styleClass="clear-button" maxWidth="120"/>
+        </HBox>
+    </VBox>
+
+    <!-- Final Results Card -->
+    <VBox fx:id="resultCard" styleClass="card" spacing="14" visible="false" managed="false">
+        <Label text="Numerical Results" styleClass="section-title"/>
+
+        <GridPane hgap="14" vgap="12">
+            <Label text="First Derivative f'(x):" styleClass="input-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <Label fx:id="firstDerivative" styleClass="result-value"
+                   GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="Second Derivative f''(x):" styleClass="input-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <Label fx:id="secondDerivative" styleClass="result-value"
+                   GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <Label text="Truncation Error Estimate:" styleClass="input-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <Label fx:id="errorEstimate" styleClass="result-meta"
+                   GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+        </GridPane>
+    </VBox>
+
+    <!-- Detailed Solution Card -->
+    <VBox fx:id="detailedSolutionCard" styleClass="card" spacing="20" visible="false" managed="false">
+        <Label text="Detailed Solution Steps" styleClass="section-title"/>
+
+        <!-- First Derivative Solution -->
+        <VBox fx:id="firstDerivativeSolutionContainer" spacing="8"/>
+
+        <Separator/>
+
+        <!-- Second Derivative Solution -->
+        <VBox fx:id="secondDerivativeSolutionContainer" spacing="8"/>
+    </VBox>
+
+    <!-- Richardson Extrapolation Card -->
+    <VBox fx:id="richardsonCard" styleClass="card" spacing="20" visible="false" managed="false">
+        <Label text="Richardson Extrapolation" styleClass="section-title"/>
+
+        <!-- Summary Table -->
+        <VBox spacing="10">
+            <Label text="Extrapolated Results" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #1e293b;"/>
+            <CustomTableView fx:id="richardsonTable" styleClass="custom-table-view"
+                             style="-fx-min-height: 100px; -fx-max-height: 120px;"/>
+        </VBox>
+
+        <Separator/>
+
+        <!-- Step-by-step Solution -->
+        <VBox spacing="20">
+            <Label text="Step-by-Step Solution" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #1e293b;"/>
+
+            <!-- First Derivative Steps -->
+            <VBox fx:id="firstDerivativeStepsContainer" spacing="8"/>
+
+            <!-- Second Derivative Steps -->
+            <VBox fx:id="secondDerivativeStepsContainer" spacing="8"/>
+        </VBox>
+    </VBox>
+</VBox>
