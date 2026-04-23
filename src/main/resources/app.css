@@ -1,17 +1,8 @@
-/* =========================================================
-   MODERN PROFESSIONAL DESIGN SYSTEM
-   Clean, accessible, no gradients or shadows
-========================================================= */
-
 .root {
     -fx-font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
     -fx-base: #ffffff;
     -fx-background-color: #f8fafc;
 }
-
-/* =========================================================
-   NAVIGATION - CLEAN SIDEBAR
-========================================================= */
 
 .nav-box {
     -fx-background-color: #ffffff;
@@ -27,14 +18,6 @@
     -fx-font-weight: 700;
     -fx-padding: 0 0 20 12;
     -fx-letter-spacing: -0.2px;
-}
-
-.nav-section {
-    -fx-text-fill: #64748b;
-    -fx-font-size: 11px;
-    -fx-font-weight: 600;
-    -fx-padding: 16 0 4 12;
-    -fx-letter-spacing: 0.3px;
 }
 
 .nav-box .toggle-button {
@@ -58,25 +41,12 @@
     -fx-font-weight: 600;
 }
 
-/* =========================================================
-   WORKSPACE LAYOUT
-========================================================= */
-
-.workspace-scroll {
-    -fx-background: #f8fafc;
-    -fx-background-color: #f8fafc;
-}
-
 .workspace-container {
     -fx-padding: 32 40;
     -fx-spacing: 24;
     -fx-alignment: TOP_CENTER;
     -fx-min-width: 600px;
 }
-
-/* =========================================================
-   TYPOGRAPHY - REFINED
-========================================================= */
 
 .workspace-title {
     -fx-font-size: 28px;
@@ -100,10 +70,6 @@
     -fx-padding: 0 0 4 0;
 }
 
-/* =========================================================
-   CARDS - CLEAN BORDERS, NO SHADOWS
-========================================================= */
-
 .card {
     -fx-background-color: #ffffff;
     -fx-background-radius: 12;
@@ -112,14 +78,6 @@
     -fx-border-radius: 8;
     -fx-padding: 20;
 }
-
-.hero-card {
-    -fx-padding: 24;
-}
-
-/* =========================================================
-   INPUTS - MODERN, CLEAN
-========================================================= */
 
 .input-label {
     -fx-font-size: 12px;
@@ -146,18 +104,10 @@
     -fx-border-width: 1.5;
 }
 
-.input-field:disabled {
-    -fx-opacity: 0.5;
-}
-
 .gridpane {
     -fx-hgap: 16;
     -fx-vgap: 14;
 }
-
-/* =========================================================
-   BUTTONS - MINIMAL, PROFESSIONAL
-========================================================= */
 
 .solve-button {
     -fx-background-color: #4f46e5;
@@ -178,7 +128,6 @@
     -fx-background-color: #3730a3;
 }
 
-/* Clear button specific styling */
 .clear-button {
     -fx-background-color: #f1f5f9;
     -fx-text-fill: #475569;
@@ -192,22 +141,6 @@
     -fx-background-color: #e2e8f0;
 }
 
-/* =========================================================
-   RESULT DISPLAY
-========================================================= */
-
-.result-label {
-    -fx-font-size: 14px;
-    -fx-font-weight: 600;
-    -fx-text-fill: #059669;
-    -fx-background-color: #ecfdf5;
-    -fx-background-radius: 6;
-    -fx-padding: 8 12;
-    -fx-border-color: #d1fae5;
-    -fx-border-width: 1;
-    -fx-border-radius: 6;
-}
-
 .result-value {
     -fx-font-size: 15px;
     -fx-font-weight: 700;
@@ -218,93 +151,6 @@
     -fx-font-size: 13px;
     -fx-text-fill: #475569;
 }
-
-/* =========================================================
-   TABLE - MODERN, CLEAN, READABLE
-========================================================= */
-
-.custom-table-view {
-    -fx-background-color: #ffffff;
-    -fx-border-color: #e2e8f0;
-    -fx-border-width: 1;
-    -fx-border-radius: 10;
-    -fx-background-radius: 10;
-}
-
-/* Header styling */
-.custom-table-view .column-header-background {
-    -fx-background-color: #f8fafc;
-    -fx-background-radius: 10 10 0 0;
-}
-
-.custom-table-view .column-header {
-    -fx-background-color: transparent;
-    -fx-border-color: #e2e8f0;
-    -fx-border-width: 0 0 1 0;
-    -fx-padding: 8 0;
-}
-
-.custom-table-view .column-header .label {
-    -fx-font-size: 12px;
-    -fx-font-weight: 700;
-    -fx-text-fill: #475569;
-    -fx-padding: 0 8;
-    -fx-letter-spacing: 0.2px;
-}
-
-/* Row styling */
-.custom-table-view .table-row-cell {
-    -fx-cell-size: 38px;
-    -fx-font-size: 12px;
-    -fx-border-color: transparent;
-}
-
-.custom-table-view .table-row-cell:hover {
-    -fx-background-color: #f8fafc;
-}
-
-.custom-table-view .table-row-cell:selected {
-    -fx-background-color: #eef2ff;
-}
-
-.custom-table-view .table-row-cell:odd {
-    -fx-background-color: #ffffff;
-}
-
-.custom-table-view .table-row-cell:even {
-    -fx-background-color: #fefefe;
-}
-
-/* Cell styling */
-.custom-table-view .table-cell {
-    -fx-border-color: transparent;
-    -fx-padding: 8 12;
-    -fx-text-fill: #334155;
-    -fx-font-weight: 400;
-}
-
-.custom-table-view .table-cell:selected {
-    -fx-text-fill: #1e293b;
-}
-
-/* Scrollbar - minimal */
-.custom-table-view .scroll-bar:vertical {
-    -fx-pref-width: 8px;
-    -fx-background-color: transparent;
-}
-
-.custom-table-view .scroll-bar:vertical .thumb {
-    -fx-background-color: #cbd5e1;
-    -fx-background-radius: 4;
-}
-
-.custom-table-view .scroll-bar:vertical .thumb:hover {
-    -fx-background-color: #94a3b8;
-}
-
-/* =========================================================
-   SPINNER
-========================================================= */
 
 .spinner .text-field {
     -fx-background-color: #ffffff;
@@ -327,62 +173,11 @@
     -fx-background-color: #f1f5f9;
 }
 
-/* =========================================================
-   SEPARATOR
-========================================================= */
-
 .separator .line {
     -fx-border-color: #e2e8f0;
     -fx-border-width: 1;
 }
 
-/* =========================================================
-   UTILITY CLASSES
-========================================================= */
-
-.text-success {
-    -fx-fill: #059669;
-}
-
-.text-warning {
-    -fx-fill: #d97706;
-}
-
-.text-error {
-    -fx-fill: #dc2626;
-}
-
-.text-muted {
-    -fx-fill: #64748b;
-}
-
-.bg-success-light {
-    -fx-background-color: #ecfdf5;
-}
-
-/* =========================================================
-   RESPONSIVE ADJUSTMENTS
-========================================================= */
-
-@media (max-width: 800px) {
-    .workspace-container {
-        -fx-padding: 24 20;
-    }
-
-    .workspace-title {
-        -fx-font-size: 24px;
-    }
-
-    .card {
-        -fx-padding: 16;
-    }
-}
-
-/* =========================================================
-   GAUSS-JACOBI MATRIX INPUT FIELDS
-========================================================= */
-
-/* Base text field style for matrix inputs */
 .matrix-input-field {
     -fx-pref-height: 42px;
     -fx-font-size: 13px;
@@ -395,59 +190,4 @@
     -fx-border-width: 1;
     -fx-padding: 0 10;
     -fx-alignment: CENTER;
-}
-
-/* Matrix coefficient fields */
-.matrix-coeff-field {
-    -fx-border-color: #cbd5e1;
-}
-
-.matrix-coeff-field:hover {
-    -fx-border-width: 1.5;
-    -fx-opacity: 0.85;
-}
-
-.matrix-coeff-field:focused {
-    -fx-border-width: 2;
-}
-
-/* Diagonal matrix elements */
-.matrix-diagonal-field {
-    -fx-background-color: #fef3c7;
-    -fx-border-width: 1.5;
-}
-
-.matrix-diagonal-field:hover {
-    -fx-border-width: 2;
-    -fx-opacity: 0.85;
-}
-
-.matrix-diagonal-field:focused {
-    -fx-border-width: 2;
-}
-
-/* RHS (constants) fields */
-.matrix-rhs-field {
-    -fx-border-width: 1.5;
-}
-
-.matrix-rhs-field:hover {
-    -fx-border-width: 2;
-}
-
-.matrix-rhs-field:focused {
-    -fx-border-width: 2;
-}
-
-/* Initial values fields */
-.matrix-initial-field {
-    -fx-border-width: 1.5;
-}
-
-.matrix-initial-field:hover {
-    -fx-border-width: 2;
-}
-
-.matrix-initial-field:focused {
-    -fx-border-width: 2;
 }

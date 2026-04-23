@@ -28,7 +28,7 @@ public class MainApp extends Application {
             // Set application icon/logo
             setAppIcon(stage);
 
-            stage.setTitle("Numerical Methods Calculator");
+            stage.setTitle("Numerical Methods Solver");
             stage.setScene(scene);
             stage.setMaximized(true);
             stage.show();
@@ -39,7 +39,7 @@ public class MainApp extends Application {
 
     private void setAppIcon(Stage stage) {
         try {
-            String logoPath = "/images/icon.png";
+            String logoPath = "/images/icon-2.png";
 
             Image appIcon = null;
             var url = getClass().getResource(logoPath);
