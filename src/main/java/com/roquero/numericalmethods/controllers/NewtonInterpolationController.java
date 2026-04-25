@@ -162,11 +162,11 @@ public class NewtonInterpolationController {
     private void displayPolynomials() {
         String nonSimplified = solver.getPolynomialString();
         nonSimplifiedPolynomialLabel.setText(nonSimplified);
-        nonSimplifiedPolynomialLabel.setStyle("-fx-text-fill: #475569; -fx-font-size: 12px; -fx-font-family: 'Courier New', monospace; -fx-wrap-text: true;");
+        nonSimplifiedPolynomialLabel.getStyleClass().add("code-text");
 
         String simplified = solver.getSimplifiedPolynomialString();
         simplifiedPolynomialLabel.setText(simplified);
-        simplifiedPolynomialLabel.setStyle("-fx-text-fill: #4f46e5; -fx-font-weight: bold; -fx-font-size: 13px; -fx-font-family: 'Courier New', monospace; -fx-wrap-text: true;");
+        simplifiedPolynomialLabel.getStyleClass().add("code-text-success");
     }
 
     private void interpolate() {
@@ -199,7 +199,7 @@ public class NewtonInterpolationController {
                 }
             }
             interpolationResult.setText(resultText.toString());
-            interpolationResult.setStyle("-fx-text-fill: #059669; -fx-font-weight: bold; -fx-font-size: 13px; -fx-font-family: 'Courier New', monospace;");
+            interpolationResult.getStyleClass().add("code-text-success");
 
             displayInterpolationTable();
 

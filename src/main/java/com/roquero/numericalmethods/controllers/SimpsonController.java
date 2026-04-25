@@ -132,38 +132,31 @@ public class SimpsonController {
 
         double h = (b - a) / n;
 
-        // Title
         Label titleLabel = new Label("Simpson's 1/3 Rule Formula");
-        titleLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #1e293b; -fx-padding: 0 0 8 0;");
+        titleLabel.getStyleClass().add("title");
         formulaContainer.getChildren().add(titleLabel);
 
-        // Formula card
         VBox formulaCard = new VBox(8);
-        formulaCard.setStyle("""
-            -fx-background-color: #f8fafc;
-            -fx-border-color: #e2e8f0;
-            -fx-border-radius: 8;
-            -fx-background-radius: 8;
-            -fx-padding: 14;
-        """);
+        formulaCard.getStyleClass().add("card");
 
         HBox header = new HBox(8);
         header.setAlignment(Pos.CENTER_LEFT);
 
         Label icon = new Label("∫");
-        icon.setStyle("-fx-text-fill: #0284c7; -fx-font-size: 16px; -fx-font-weight: bold;");
+        icon.getStyleClass().add("icon");
 
         Label formulaTitle = new Label("General Formula");
-        formulaTitle.setStyle("-fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #0284c7;");
+
+        formulaTitle.getStyleClass().add("title-small");
 
         header.getChildren().addAll(icon, formulaTitle);
 
         Label generalFormula = new Label("∫ₐᵇ f(x)dx ≈ (h/3) [f(x₀) + f(xₙ) + 4∑f(x_odd) + 2∑f(x_even)]");
-        generalFormula.setStyle("-fx-font-family: 'Courier New', monospace; -fx-font-size: 12px; -fx-text-fill: #475569; -fx-padding: 0 0 0 24;");
+        generalFormula.getStyleClass().add("code-text");
         generalFormula.setWrapText(true);
 
         Label appliedFormula = new Label("Applied: I = " + "(" + h + "/3) × " + result.simpsonSum());
-        appliedFormula.setStyle("-fx-font-family: 'Courier New', monospace; -fx-font-size: 12px; -fx-text-fill: #475569; -fx-padding: 0 0 0 24;");
+        appliedFormula.getStyleClass().add("code-text");
         appliedFormula.setWrapText(true);
 
         formulaCard.getChildren().addAll(header, generalFormula, appliedFormula);
@@ -173,62 +166,46 @@ public class SimpsonController {
     private void buildCalculationSummaryCard(SimpsonSolver.Result result) {
         calculationContainer.getChildren().clear();
 
-        // Title
         Label titleLabel = new Label("Calculation Summary");
-        titleLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #1e293b; -fx-padding: 0 0 8 0;");
+        titleLabel.getStyleClass().add("title");
         calculationContainer.getChildren().add(titleLabel);
 
-        // Summary card
         VBox summaryCard = new VBox(8);
-        summaryCard.setStyle("""
-            -fx-background-color: #f8fafc;
-            -fx-border-color: #e2e8f0;
-            -fx-border-radius: 8;
-            -fx-background-radius: 8;
-            -fx-padding: 14;
-            -fx-margin: 10 0 0 0;
-        """);
+        summaryCard.getStyleClass().add("card");
 
         HBox header = new HBox(8);
         header.setAlignment(Pos.CENTER_LEFT);
 
         Label icon = new Label("Σ");
-        icon.setStyle("-fx-text-fill: #7c3aed; -fx-font-size: 12px; -fx-font-weight: bold;");
+        icon.getStyleClass().add("icon");
 
         Label summaryTitle = new Label("Weighted Sum");
-        summaryTitle.setStyle("-fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #7c3aed;");
+        summaryTitle.getStyleClass().add("title-small");
 
         header.getChildren().addAll(icon, summaryTitle);
 
         Label sumLabel = new Label("∑ cᵢ·f(xᵢ) = " + result.simpsonSum());
-        sumLabel.setStyle("-fx-font-family: 'Courier New', monospace; -fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #6d28d9; -fx-padding: 5 0 0 24;");
+        sumLabel.getStyleClass().add("code-text");
 
         summaryCard.getChildren().addAll(header, sumLabel);
         calculationContainer.getChildren().add(summaryCard);
 
-        // Result card
         VBox resultBox = new VBox(8);
-        resultBox.setStyle("""
-            -fx-background-color: #f0fdf4;
-            -fx-border-color: #86efac;
-            -fx-border-radius: 8;
-            -fx-background-radius: 8;
-            -fx-padding: 14;
-        """);
+        resultBox.getStyleClass().add("result-card");
 
         HBox resultHeader = new HBox(8);
         resultHeader.setAlignment(Pos.CENTER_LEFT);
 
         Label resultIcon = new Label("✓");
-        resultIcon.setStyle("-fx-text-fill: #059669; -fx-font-size: 14px; -fx-font-weight: bold;");
+        resultIcon.getStyleClass().add("icon-success");
 
         Label resultTitle = new Label("Final Result");
-        resultTitle.setStyle("-fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #059669;");
+        resultTitle.getStyleClass().add("result-card-title");
 
         resultHeader.getChildren().addAll(resultIcon, resultTitle);
 
         Label finalResult = new Label("I = " + result.integral());
-        finalResult.setStyle("-fx-font-family: 'Courier New', monospace; -fx-font-size: 13px; -fx-text-fill: #065f46; -fx-padding: 0 0 0 24;");
+        finalResult.getStyleClass().add("code-text-success");
 
         resultBox.getChildren().addAll(resultHeader, finalResult);
         calculationContainer.getChildren().add(resultBox);

@@ -88,13 +88,10 @@
     <!-- Detailed Solution Card -->
     <VBox fx:id="detailedSolutionCard" styleClass="card" spacing="20" visible="false" managed="false">
         <Label text="Detailed Solution Steps" styleClass="section-title"/>
-
-        <!-- First Derivative Solution -->
         <VBox fx:id="firstDerivativeSolutionContainer" spacing="8"/>
 
         <Separator/>
 
-        <!-- Second Derivative Solution -->
         <VBox fx:id="secondDerivativeSolutionContainer" spacing="8"/>
     </VBox>
 
@@ -102,23 +99,17 @@
     <VBox fx:id="richardsonCard" styleClass="card" spacing="20" visible="false" managed="false">
         <Label text="Richardson Extrapolation" styleClass="section-title"/>
 
-        <!-- Summary Table -->
         <VBox spacing="10">
-            <Label text="Extrapolated Results" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #1e293b;"/>
+            <Label text="Extrapolated Results" styleClass="title"/>
             <CustomTableView fx:id="richardsonTable" styleClass="custom-table-view"
                              style="-fx-min-height: 100px; -fx-max-height: 120px;"/>
         </VBox>
 
         <Separator/>
 
-        <!-- Step-by-step Solution -->
         <VBox spacing="20">
-            <Label text="Step-by-Step Solution" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #1e293b;"/>
-
-            <!-- First Derivative Steps -->
+            <Label text="Step-by-Step Solution" styleClass="title"/>
             <VBox fx:id="firstDerivativeStepsContainer" spacing="8"/>
-
-            <!-- Second Derivative Steps -->
             <VBox fx:id="secondDerivativeStepsContainer" spacing="8"/>
         </VBox>
     </VBox>

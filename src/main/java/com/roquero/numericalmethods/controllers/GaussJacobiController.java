@@ -131,40 +131,37 @@ public class GaussJacobiController {
         rhsFields = new TextField[size];
         initialFields = new TextField[size];
 
-        // Column headers
         for (int j = 0; j < size; j++) {
             VBox headerBox = new VBox();
             headerBox.setAlignment(Pos.CENTER);
             headerBox.setSpacing(4);
 
             Label colLabel = new Label("x" + (j + 1));
-            colLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: #4f46e5; -fx-font-size: 13px;");
+            colLabel.getStyleClass().add("matrix-column-header");
             Label subLabel = new Label("column " + (j + 1));
-            subLabel.setStyle("-fx-font-size: 9px; -fx-text-fill: #94a3b8;");
+            subLabel.getStyleClass().add("matrix-column-subheader");
 
             headerBox.getChildren().addAll(colLabel, subLabel);
             matrixGrid.add(headerBox, j + 1, 0);
         }
 
-        // RHS column header
         VBox rhsHeader = new VBox();
         rhsHeader.setAlignment(Pos.CENTER);
         rhsHeader.setSpacing(4);
         Label rhsTitle = new Label("b");
-        rhsTitle.setStyle("-fx-font-weight: bold; -fx-text-fill: #10b981; -fx-font-size: 13px;");
+        rhsTitle.getStyleClass().add("matrix-column-header-green");
         Label rhsSub = new Label("constants");
-        rhsSub.setStyle("-fx-font-size: 9px; -fx-text-fill: #94a3b8;");
+        rhsSub.getStyleClass().add("matrix-column-subheader");
         rhsHeader.getChildren().addAll(rhsTitle, rhsSub);
         matrixGrid.add(rhsHeader, size + 1, 0);
 
-        // Initial values column header
         VBox initialHeader = new VBox();
         initialHeader.setAlignment(Pos.CENTER);
         initialHeader.setSpacing(4);
         Label initialTitle = new Label("x₀");
-        initialTitle.setStyle("-fx-font-weight: bold; -fx-text-fill: #f59e0b; -fx-font-size: 13px;");
+        initialTitle.getStyleClass().add("matrix-column-header-orange");
         Label initialSub = new Label("initial guess");
-        initialSub.setStyle("-fx-font-size: 9px; -fx-text-fill: #94a3b8;");
+        initialSub.getStyleClass().add("matrix-column-subheader");
         initialHeader.getChildren().addAll(initialTitle, initialSub);
         matrixGrid.add(initialHeader, size + 2, 0);
 
@@ -174,15 +171,14 @@ public class GaussJacobiController {
             rowLabelBox.setSpacing(6);
 
             Label rowLabel = new Label("Eq " + (i + 1));
-            rowLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: #475569; -fx-font-size: 12px;");
+            rowLabel.getStyleClass().add("matrix-row-label");
 
             Label rowSub = new Label("row " + (i + 1));
-            rowSub.setStyle("-fx-font-size: 9px; -fx-text-fill: #94a3b8;");
+            rowSub.getStyleClass().add("matri-row-sublabel");
 
             rowLabelBox.getChildren().addAll(rowLabel, rowSub);
             matrixGrid.add(rowLabelBox, 0, i + 1);
 
-            // Matrix coefficient fields
             for (int j = 0; j < size; j++) {
                 TextField field = createTextField("matrix");
                 field.setPromptText("a" + (i + 1) + (j + 1));
@@ -191,13 +187,11 @@ public class GaussJacobiController {
                 matrixGrid.add(field, j + 1, i + 1);
             }
 
-            // RHS field
             TextField rhsField = createTextField("rhs");
             rhsField.setPromptText("b" + (i + 1));
             rhsFields[i] = rhsField;
             matrixGrid.add(rhsField, size + 1, i + 1);
 
-            // Initial value field
             TextField initialField = createTextField("initial");
             initialField.setPromptText("x₀" + (i + 1));
             initialFields[i] = initialField;
@@ -256,7 +250,6 @@ public class GaussJacobiController {
         try {
             SolverConfig currentConfig = getCurrentConfig();
 
-            // Parse tolerance and max iterations
             double tolerance = 1e-6;
             int maxIterations = 100;
 
@@ -354,14 +347,14 @@ public class GaussJacobiController {
             }
         }
         solutionStatus.setText(solutionText.toString());
-        solutionStatus.setStyle("-fx-text-fill: #059669; -fx-font-weight: bold; -fx-font-size: 13px;");
+        solutionStatus.getStyleClass().add("text-success");
 
         if (result.converged()) {
             convergedStatus.setText("✓ Yes");
-            convergedStatus.setStyle("-fx-text-fill: #16a34a; -fx-font-weight: bold;");
+            convergedStatus.getStyleClass().add("text-success");
         } else {
             convergedStatus.setText("✗ No (max iterations reached)");
-            convergedStatus.setStyle("-fx-text-fill: #dc2626; -fx-font-weight: bold;");
+            convergedStatus.getStyleClass().add("text-error");
         }
 
         int iterCount = result.iterations().size();

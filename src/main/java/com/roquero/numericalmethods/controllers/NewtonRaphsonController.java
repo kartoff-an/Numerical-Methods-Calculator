@@ -115,11 +115,11 @@ public class NewtonRaphsonController {
         if (result.converged()) {
             rootValue.setText(String.valueOf(result.root()));
             convergedStatus.setText("✓ Yes");
-            convergedStatus.setStyle("-fx-text-fill: #16a34a; -fx-font-weight: bold;");
+            convergedStatus.getStyleClass().add("text-success");
         } else {
             rootValue.setText("Failed");
             convergedStatus.setText("✗ No");
-            convergedStatus.setStyle("-fx-text-fill: #dc2626; -fx-font-weight: bold;");
+            convergedStatus.getStyleClass().add("text-error");
         }
 
         convergenceTest.setText(String.valueOf(result.convergenceTest()));
